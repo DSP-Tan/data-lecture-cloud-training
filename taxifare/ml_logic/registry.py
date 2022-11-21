@@ -1,5 +1,6 @@
 from taxifare.ml_logic.params          import LOCAL_REGISTRY_PATH
 from taxifare.model_target.local_model import save_local_model
+from taxifare.model_target.local_model import save_flocal_model
 from taxifare.model_target.cloud_model import save_cloud_model
 
 import glob
@@ -21,6 +22,9 @@ def save_model(model: Model = None,
     timestamp = time.strftime("%Y%m%d-%H%M%S")
     if os.environ["MODEL_TARGET"]=="local":
         save_local_model(model,params,metrics,timestamp)
+        return None
+    elif os.environ["MODEL_TARGET"]=="flocal":
+        save_flocal_model(model,timestamp)
         return None
     elif os.environ["MODEL_TARGET"]=="cloud":
         save_cloud_model(model,timestamp)

@@ -4,6 +4,18 @@ from colorama import Fore, Style
 import os
 import pickle
 
+
+def save_flocal_model(model, suffix):
+
+    if model:
+
+        model_path = os.path.join(LOCAL_REGISTRY_PATH, "models",
+                                  suffix + ".pickle")
+
+        print(f"- model path: {model_path}")
+
+        model.save(model_path)
+
 def save_local_model(model: Model = None,
                      params: dict = None,
                      metrics: dict = None,
