@@ -10,7 +10,8 @@ DATASET_SIZE = "10k"             # ["1k","10k", "100k", "500k"]
 VALIDATION_DATASET_SIZE = "10k"  # ["1k", "10k", "100k", "500k"]
 CHUNK_SIZE = 5000
 LOCAL_DATA_PATH = os.path.join(os.path.expanduser('~'), ".lewagon", "mlops", "data")
-LOCAL_REGISTRY_PATH =  os.path.join(os.path.expanduser('~'), ".lewagon", "mlops", "training_outputs")
+#LOCAL_REGISTRY_PATH =  os.path.join(os.path.expanduser('~'), ".lewagon", "mlops", "training_outputs")
+LOCAL_REGISTRY_PATH = os.path.join(os.path.expanduser("."),"training_outputs")
 
 # Use this to optimize loading of raw_data with headers: pd.read_csv(..., dtypes=..., headers=True)
 DTYPES_RAW_OPTIMIZED = {
