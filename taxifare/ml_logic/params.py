@@ -39,7 +39,8 @@ DTYPES_RAW_OPTIMIZED_HEADLESS = {
     7: "int8"
 }
 
-DTYPES_PROCESSED_OPTIMIZED = np.float32
+DTYPES_PROCESSED_OPTIMIZED = {f"_{i}":np.float32 for i in range(66)}
+
 
 
 
