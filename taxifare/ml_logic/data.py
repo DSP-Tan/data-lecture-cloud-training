@@ -5,6 +5,7 @@ from taxifare.ml_logic.params import (COLUMN_NAMES_RAW,
                                             )
 
 from taxifare.data_sources.local_disk import (get_pandas_chunk, save_local_chunk)
+from taxifare.data_sources.cloud_data import get_cloud_chunk
 
 import os
 import pandas as pd
@@ -59,13 +60,21 @@ def get_chunk(source_name: str,
         else:
             dtypes = DTYPES_RAW_OPTIMIZED_HEADLESS
 
-    chunk_df = get_pandas_chunk(path=source_name,
-                                index=index,
-                                chunk_size=chunk_size,
-                                dtypes=dtypes,
-                                columns=columns,
-                                verbose=verbose)
-
+    if os.environ['DATA_SOURCE']=='local':
+        chunk_df = get_pandas_chunk(path=source_name,
+                                    index=index,
+                                    chunk_size=chunk_size,
+                                    dtypes=dtypes,
+                                    columns=columns,
+                                    verbose=verbose)
+    elif os.environ['DATA_SOURCE']=='cloud':
+        chunk_df = get_cloud_chunk(path=source_name,
+                            index=index,
+                            chunk_size=chunk_size,
+                            dtypes=dtypes,
+                            columns=columns)
+    else:
+        print(f"Bad DATA_SOURCE variable: {os.environ['DATA_SOURCE']}")
     return chunk_df
 
 
